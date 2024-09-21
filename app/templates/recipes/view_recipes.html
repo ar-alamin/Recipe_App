@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}View Recipe{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1 class="text-center">View Recipes</h1>
+
+        <div class="mt-3">
+                <form>
+                    <div class="mb-3 d-flex justify-content-center">
+                        <input name="search" type="text" placeholder="Search Recipe">
+
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>                    
+                </form>
+        </div>
+
+            <div class="row">
+                {% for recipe in recipes %}
+                    <div class="col-lg-3">
+                        <div class="card h-100">
+                            <img src="{{recipe.recipe_img.url}}" alt="Img" class="img-tag">
+                            <div class="card-body">
+                                <h5>{{recipe.recipe_name}}</h5> 
+                                <p class="card-text">{{recipe.recipe_des}}</p>
+
+                                <div class="d-flex justify-content-between button">
+                                    <a href="/delete-recipe/{{recipe.id}}/" class="btn btn-danger">Delete</a>
+                                    <a href="/update-recipe/{{recipe.id}}/" class="btn btn-primary">Update</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+{% endblock %}
