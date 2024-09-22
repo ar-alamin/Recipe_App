@@ -36,12 +36,14 @@ def view_recipes(request):
     return render(request, 'recipes/view_recipes.html', {'recipes': queryset})
 
 # delete recipe
+@login_required(login_url="/login/")
 def delete_recipe(request, id):
     queryset = Recipe.objects.get(id = id)
     queryset.delete()
     return redirect('/view-recipe/')
 
 # update recipe
+@login_required(login_url="/login/")
 def update_recipe(request, id):
     queryset = Recipe.objects.get(id = id)
 
